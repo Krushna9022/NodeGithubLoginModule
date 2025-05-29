@@ -41,12 +41,11 @@ app.get('/', (req, res) => {
   res.send(`<h1>Hello!</h1><a href="/auth/github">Login with GitHub</a>`);
 });
 
-// Auth route (fix: spelling 'gitbub' ➜ 'github')
+
 app.get('/auth/github',
   passport.authenticate('github', { scope: ['user:email'] })
 );
 
-// Callback route (fix: wrong path '/auth/google/callback' ➜ '/auth/github/callback')
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
